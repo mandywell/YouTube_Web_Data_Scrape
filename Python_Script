@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 import time
 import pandas as pd
 
-# Initialize Chrome driver
+# Initialize Chrome driver - Make sure your Chrome Driver version matches your Chrome browser version. Update code if you are using a different browser.
 driver = webdriver.Chrome(executable_path='C:\\Users\\User\\OneDrive\\Desktop\\chromedriver-win64\\chromedriver.exe')
 
 # Navigate to YouTube channel
