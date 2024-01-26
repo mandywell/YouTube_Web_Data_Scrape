@@ -1,0 +1,46 @@
+!pip install selenium
+!pip install pandas
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+import time
+import pandas as pd
+
+# Initialize Chrome driver
+driver = webdriver.Chrome(executable_path='C:\\Users\\User\\OneDrive\\Desktop\\chromedriver-win64\\chromedriver.exe')
+
+# Navigate to YouTube channel
+driver.get("https://www.youtube.com/@LeilaGharani/videos")
+
+# Scroll to load all videos
+for _ in range(10):  # Adjust the range based on the number of scrolls needed
+    driver.find_element_by_tag_name('body').send_keys(Keys.END)
+    time.sleep(2)
+
+# Extract video names
+video_names = []
+wait = WebDriverWait(driver, 10)
+name_elements = wait.until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="video-title"]')))
+for element in name_elements:
+    video_names.append(element.text)
+
+# Extract video links
+video_links = []
+link_elements = wait.until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="thumbnail"]')))
+for element in link_elements:
+    link = element.get_attribute('href')
+    if link is not None and link not in video_links:
+        video_links.append(link)
+
+# Combine names and links
+video_data = list(zip(video_names, video_links))
+
+# Save to Excel
+df = pd.DataFrame(video_data, columns=['Video Name', 'Video Link'])
+df.to_excel("C:\\Users\\User\\OneDrive\\Location\\Leila Gharani You Tube Videos.xlsx", index=False)
+
+# Close the browser
+driver.quit()
