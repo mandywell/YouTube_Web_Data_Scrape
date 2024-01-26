@@ -1,0 +1,8 @@
+# Initial ChatGPT Prompt
+I need your help automating a flow.  I need to do the following: 
+A.	Open my browser: Chrome
+B.	Go to this YouTube channel: https://www.youtube.com/@LeilaGharani/videos
+C.	Move through each video on the page and copy the Name and the corresponding Link to each video.
+D.	Output the Name and Link in an Excel spreadsheet on my computer called: C:\Users\User\OneDrive\Location\FileName
+
+Write the code in Python.
