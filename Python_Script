@@ -40,7 +40,7 @@ video_data = list(zip(video_names, video_links))
 
 # Save to Excel
 df = pd.DataFrame(video_data, columns=['Video Name', 'Video Link'])
-df.to_excel("C:\\Users\\User\\OneDrive\\Location\\Leila Gharani You Tube Videos.xlsx", index=False)
+df.to_excel("C:\\Users\\User\\OneDrive\\Location\\You Tube Videos.xlsx", index=False)
 
 # Close the browser
 driver.quit()
